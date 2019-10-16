@@ -13,16 +13,18 @@ describe("countWords", () => {
         This text
     has   lots of
     whitespace
-    
+
+
     `;
     // write your act and assertion here
+    const numWords = countWords(text);
+    expect(numWords).toBe(7);
   });
 
   it("counts words with non-ascii characters (emoji, Chinese, etc)", () => {
-    /*
-     * Write your test here.
-     *
-     */
+    const text = "I ♥️ 🧀 🍕!";
+    const countsNonAscii = countWords(text);
+    expect(countsNonAscii).toBe(4);
   });
 
   it("throws an error if the text is undefined", () => {
@@ -30,6 +32,14 @@ describe("countWords", () => {
      * Write your test here.
      * Hint: https://jestjs.io/docs/en/expect#tothrowerror
      */
+
+    const text = undefined;
+    //  const throwsERR = () => countWords(text);
+    //  expect(throwsERR).toThrow(new Error("Your text seems to be blank. Please type something and try again."))
+
+    expect(() => countWords(text)).toThrowError(
+      "Your text seems to be blank. Please type something and try again."
+    );
   });
 
   // Write more tests here!
